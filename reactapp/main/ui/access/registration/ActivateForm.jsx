@@ -5,7 +5,7 @@ import validator from 'validator';
 
 import { LOGIN_LINK, LOGIN_TEXT, REGISTRATION_SUCCESS_LINK, RESEND_ACTIVATION_LINK, RESEND_ACTIVATION_TEXT, LOGOUT_LINK } from '../../../../routes';
 import { activateUserThroughSocket } from '../../../web-mobile-common/access/activation/actionGenerators';
-import { emptyMapStateToProps } from '../../../web-mobile-common/common/misc.jsx';
+import { emptyMapStateToProps } from '../../../web-mobile-common/common/misc';
 import { updateEmail } from '../../../web-mobile-common/access/authentication/actionGenerators';
 
 class ActivateForm extends Component {

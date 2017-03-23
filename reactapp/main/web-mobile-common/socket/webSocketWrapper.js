@@ -1,6 +1,5 @@
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
-import { WS_ROOT_URL } from '../../ConfigurationPaths';
 import * as ActionTypes from './types';
 import {
   startUpActions,
@@ -8,7 +7,7 @@ import {
   setIsDisconnected } from './actionGenerators';
 import { logoutUser, authenticateToSocket } from '../access/authentication/actionGenerators';
 
-export const webSocketWrapper = (store) => {
+export const webSocketWrapper = (store, redirects, WS_ROOT_URL) => {
   const wrapper = {
     webSocket: null,
     postObject(obj) {
@@ -33,7 +32,7 @@ export const webSocketWrapper = (store) => {
           startUpActions.forEach(action => store.dispatch(action()));
         } else {
           store.dispatch(logoutUser());
-          // push to login page ***
+          redirects.authentication();
         }
       };
 

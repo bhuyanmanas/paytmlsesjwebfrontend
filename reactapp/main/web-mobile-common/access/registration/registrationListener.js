@@ -1,5 +1,3 @@
-// import { Actions } from 'react-native-router-flux';
-
 import {
   EMAIL_IS_AVAILABLE,
   USERNAME_IS_AVAILABLE,
@@ -20,7 +18,6 @@ import {
 
 export const registrationListener = (store, redirects) => {
     const lastAction = store.getState().lastAction;
-    console.log('registrationListener: action', lastAction);
     switch (lastAction.type) {
       case EMAIL_IS_AVAILABLE: {
         const errorMessageRegistration = lastAction.payload.available ? '' : 'Already registered';

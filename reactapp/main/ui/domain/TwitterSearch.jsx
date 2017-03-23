@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, hashHistory } from 'react-router';
-import * as axios from 'axios';
 
 import { LOGOUT_LINK } from '../../../routes';
 import { searchTwitter, saveSearchTerm } from '../../web-mobile-common/domain/actionGenerators';
@@ -58,11 +57,7 @@ class TwitterSearch extends Component {
     }
 
     onLucky() {
-        console.log('clicked onLucky');
-        axios.get('http://www.setgetgo.com/randomword/get.php').then((response) => {
-            this.refs.searchText.value = response.data;
-            this.props.searchTwitter(this.refs.searchText.value);
-        });
+
     }
 
     render() {

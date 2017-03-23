@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../../web-mobile-common/access/authentication/actionGenerators';
-import { emptyMapStateToProps } from '../../../web-mobile-common/common/misc.jsx';
+import { emptyMapStateToProps } from '../../../web-mobile-common/common/misc';
 
 class Logout extends Component {
   constructor(props) {

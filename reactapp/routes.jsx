@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import Template from './main/Template';
-import LoginOrRegister from './main/LoginOrRegister';
+import Template from './main/ui/Template';
+import LoginOrRegister from './main/ui/access/LoginOrRegister';
 import Register from './main/ui/access/registration/Register';
 import ResendActivation from './main/ui/access/registration/ResendActivation';
 import RegistrationSuccess from './main/ui/access/registration/RegistrationSuccess';

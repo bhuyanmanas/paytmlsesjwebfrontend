@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { ADD_SEARCH_TERM, CLEAR_SEARCH_TERMS, SEARCH_RESULTS } from './types';
+import { LOGOUT_USER, SOCKET_LOGGING_OUT } from '../access/authentication/types';
 
 const INITIAL_STATE = {
     savedSearchTerms: [],
@@ -16,6 +17,10 @@ const removeDuplicates = (myArr, prop) => {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case LOGOUT_USER:
+            return INITIAL_STATE;
+        case SOCKET_LOGGING_OUT:
+            return INITIAL_STATE;
         case ADD_SEARCH_TERM:
             const newSearchTerm = action.payload;
             return {

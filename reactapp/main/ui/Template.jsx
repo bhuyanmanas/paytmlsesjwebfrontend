@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { REGISTER_LINK, REGISTER_TEXT, LOGIN_LINK, LOGIN_TEXT, LOGOUT_LINK, LOGOUT_TEXT, MANAGE_ACCOUNT_LINK, MANAGE_ACCOUNT_TEXT, TWITTER_SEARCH_LINK, TWITTER_SEARCH_TEXT } from '../routes';
+import { REGISTER_LINK, REGISTER_TEXT, LOGIN_LINK, LOGIN_TEXT, LOGOUT_LINK, LOGOUT_TEXT, MANAGE_ACCOUNT_LINK, MANAGE_ACCOUNT_TEXT, TWITTER_SEARCH_LINK, TWITTER_SEARCH_TEXT } from '../../routes';
 
 export const Template = React.createClass({
     renderLinks() {

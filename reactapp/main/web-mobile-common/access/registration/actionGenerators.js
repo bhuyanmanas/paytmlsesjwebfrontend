@@ -24,12 +24,8 @@ export const checkEmailAvailableThroughSocket = (email) => {
 export const updateEmailIsAvailableErrorRegistration =
   (msg) => updateField(UPDATE_EMAIL_AVAILABLE_ERROR, msg);
 
-export const updateUsernameIsAvailableError = (msg) => {
-  return {
-    type: UPDATE_USERNAME_AVAILABLE_ERROR,
-    payload: msg
-  };
-};
+export const updateUsernameIsAvailableError =
+    (msg) => updateField(UPDATE_USERNAME_AVAILABLE_ERROR, msg);
 
 export const checkUsernameAvailableThroughSocket = (username) => {
   return postObject({
@@ -38,9 +34,5 @@ export const checkUsernameAvailableThroughSocket = (username) => {
   });
 };
 
-export const updateRegistrationError = (value) => {
-  return {
-    type: UPDATE_REGISTRATION_ERROR,
-    payload: value
-  };
-};
+export const updateRegistrationError =
+    (msg) => updateField(UPDATE_REGISTRATION_ERROR, msg);

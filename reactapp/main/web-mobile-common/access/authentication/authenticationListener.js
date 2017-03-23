@@ -1,4 +1,4 @@
-import { startUpActions } from '../../socket/actionGenerators.jsx';
+import { startUpActions } from '../../socket/actionGenerators';
 
 import {
   loginUser,

@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 import promise from 'redux-promise';
 
-import { webSocketWrapper } from './main/web-mobile-common/socket/webSocketWrapper.jsx';
-import { connectToSocket } from './main/web-mobile-common/socket/actionGenerators.jsx';
+import { webSocketWrapper } from './main/web-mobile-common/socket/webSocketWrapper';
+import { connectToSocket } from './main/web-mobile-common/socket/actionGenerators';
 import {
     authenticationListener } from './main/web-mobile-common/access/authentication/authenticationListener';
 import {
@@ -14,6 +14,7 @@ import {
 import routes from './routes';
 import { LOGIN_USER } from './main/web-mobile-common/access/authentication/actionGenerators'
 import { LOGIN_LINK, ACTIVATE_FORM_LINK, RESET_PASSWORD_LINK, MANAGE_ACCOUNT_LINK, TWITTER_SEARCH_LINK } from './routes.jsx';
+import { WS_ROOT_URL } from './main/ConfigurationPaths';
 
 
 var store = require('configureStore').configure();
@@ -38,7 +39,6 @@ ReactDOM.render(
     document.getElementById('app')
 );
 
-const sock = webSocketWrapper(store);
 const redirects = {
     activateForm: () => hashHistory.push(ACTIVATE_FORM_LINK),
     authentication: () => hashHistory.push(LOGIN_LINK),
@@ -46,6 +46,7 @@ const redirects = {
     login: () => hashHistory.push(LOGIN_LINK),
     domain: () => hashHistory.push(TWITTER_SEARCH_LINK)
 };
+const sock = webSocketWrapper(store, redirects, WS_ROOT_URL);
 
 store.subscribe(() => sock.wSListener());
 store.subscribe(() => authenticationListener(store, redirects));

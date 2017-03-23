@@ -3,7 +3,7 @@ import {
   UPDATE_PASSWORD,
   UPDATE_USERNAME,
   UPDATE_CODE } from './types';
-import { updateField } from '../common/actionGenerators.jsx';
+import { updateField } from '../common/actionGenerators';
 
 export const updateEmail =
   (email) => updateField(UPDATE_EMAIL, email);

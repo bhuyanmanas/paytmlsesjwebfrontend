@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { logoutAllDevicesThroughSocket } from '../../../web-mobile-common/access/authentication/actionGenerators';
-import { emptyMapStateToProps } from '../../../web-mobile-common/common/misc.jsx';
+import { emptyMapStateToProps } from '../../../web-mobile-common/common/misc';
 
 class LogoutAllDevices extends Component {
     constructor(props) {
