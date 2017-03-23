@@ -1,5 +1,18 @@
 import { postObject } from '../socket/actionGenerators';
-import { CLEAR_SEARCH_TERMS } from './types';
+import { CLEAR_SEARCH_TERMS, UPDATE_SEARCH_TEXT } from './types';
+
+export const updateSearchText = (payload) => {
+  return {
+    type: UPDATE_SEARCH_TEXT,
+    payload
+  }
+};
+
+export const fetchRandomWord = () => {
+  return postObject({
+    messageType: 'toServerFetchRandomWord'
+  });
+}
 
 export const searchTwitter = (searchText) => {
     return postObject({

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, hashHistory } from 'react-router';
 
 import { LOGOUT_LINK } from '../../../routes';
-import { searchTwitter, saveSearchTerm } from '../../web-mobile-common/domain/actionGenerators';
+import { searchTwitter, saveSearchTerm, updateSearchText, fetchRandomWord } from '../../web-mobile-common/domain/actionGenerators';
 
 class TwitterSearch extends Component {
 
@@ -17,13 +17,21 @@ class TwitterSearch extends Component {
         this.updateSearchWith = this.updateSearchWith.bind(this);
     }
 
-    onSearchTextChange() {
-        const searchText = this.refs.searchText.value.trim();
-        this.props.searchTwitter(searchText);
+    componentWillReceiveProps(nextProps) {
+      const nextSearchText = nextProps.searchText.trim();
+      if (this.props.searchText.trim() !== nextSearchText) {
+          this.props.searchTwitter(nextSearchText);
+      }
+    }
+
+    onSearchTextChange(e) {
+        const searchText = e.target.value;
+        this.props.updateSearchText(searchText)
+        this.props.searchTwitter(searchText)
     }
 
     updateSearchWith(searchText) {
-        this.refs.searchText.value = searchText;
+        this.props.updateSearchText(searchText)
         this.props.searchTwitter(searchText);
     }
 
@@ -50,14 +58,14 @@ class TwitterSearch extends Component {
     }
 
     onSaveSearchResult() {
-        const searchTextToSave = this.refs.searchText.value.trim();
+        const searchTextToSave = this.props.searchText;
         if (searchTextToSave !== '') {
             this.props.saveSearchTerm(searchTextToSave)
         }
     }
 
     onLucky() {
-
+      this.props.fetchRandomWord();
     }
 
     render() {
@@ -72,7 +80,14 @@ class TwitterSearch extends Component {
                     <div className="col-lg-6">
                         <div className={`input-group`}>
                             <span className="input-group-addon"><i className="fa fa-search fa" aria-hidden="true"></i></span>
-                            <input type="text" className="form-control" name="searchText" id="searchText" ref="searchText"  placeholder="Enter search term" onChange={this.onSearchTextChange} />
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="searchText"
+                              id="searchText"
+                              value={this.props.searchText}
+                              placeholder="Enter search term"
+                              onChange={this.onSearchTextChange} />
                         </div>
                     </div>
                     <div className="col-lg-2">
@@ -103,8 +118,9 @@ class TwitterSearch extends Component {
 
 const mapStateToProps = ({ authentication, twitterSearch }) => {
     const { user } = authentication;
-    const { savedSearchTerms, searchResults } = twitterSearch;
-    return { user, savedSearchTerms, searchResults }
+    const { savedSearchTerms, searchResults, searchText } = twitterSearch;
+    return { user, savedSearchTerms, searchResults, searchText }
 };
 
-export default connect(mapStateToProps, { searchTwitter, saveSearchTerm })(TwitterSearch)
+export default connect(mapStateToProps, {
+  searchTwitter, saveSearchTerm, updateSearchText, fetchRandomWord })(TwitterSearch)

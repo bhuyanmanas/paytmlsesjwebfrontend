@@ -1,10 +1,11 @@
 import moment from 'moment'
-import { ADD_SEARCH_TERM, CLEAR_SEARCH_TERMS, SEARCH_RESULTS } from './types';
+import { ADD_SEARCH_TERM, CLEAR_SEARCH_TERMS, SEARCH_RESULTS, UPDATE_SEARCH_TEXT, RANDOM_WORD } from './types';
 import { LOGOUT_USER, SOCKET_LOGGING_OUT } from '../access/authentication/types';
 
 const INITIAL_STATE = {
     savedSearchTerms: [],
-    searchResults: []
+    searchResults: [],
+    searchText: ''
 };
 
 const sortDesc = (a, b) => { return b.createdAt - a.createdAt };
@@ -41,6 +42,17 @@ export default (state = INITIAL_STATE, action) => {
                     text: searchResult.text,
                     createdAt: moment(searchResult.createdAt).format('MMMM Do YYYY, h:mm:ss a') }})
             };
+        case UPDATE_SEARCH_TEXT:
+          return {
+            ...state,
+            searchText: action.payload
+          }
+        case RANDOM_WORD: {
+          return {
+            ...state,
+            searchText: action.payload
+          }
+        }
         default:
             return state;
     }
